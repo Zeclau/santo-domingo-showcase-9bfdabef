@@ -65,6 +65,33 @@ export function AgentsSection() {
           setAgents((prev) => [payload.new as Agent, ...prev]);
         },
       )
+      .on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "agents" },
+        (payload) => {
+          setAgents((prev) => prev.filter((a) => a.id !== (payload.old as Agent).id));
+        },
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const handleDelete = async (agent: Agent) => {
+    const code = window.prompt(`Para eliminar a "${agent.name}", ingresa la clave:`);
+    if (code === null) return;
+    if (code.trim() !== "0805") {
+      window.alert("Clave incorrecta.");
+      return;
+    }
+    const { error } = await supabase.from("agents").delete().eq("id", agent.id);
+    if (error) {
+      window.alert("No se pudo eliminar. Intenta de nuevo.");
+      return;
+    }
+    setAgents((prev) => prev.filter((a) => a.id !== agent.id));
+  };
       .subscribe();
     return () => {
       supabase.removeChannel(channel);
