@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Phone, MessageCircle, Mail, UserPlus, Loader2, X } from "lucide-react";
+import { Phone, MessageCircle, Mail, UserPlus, Loader2, X, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { FadeIn } from "./FadeIn";
 import kwLogo from "@/assets/kw-logo.png";
@@ -70,6 +70,21 @@ export function AgentsSection() {
       supabase.removeChannel(channel);
     };
   }, []);
+
+  const handleDelete = async (agent: Agent) => {
+    const pwd = window.prompt(`Eliminar a "${agent.name}". Ingresa la clave:`);
+    if (pwd === null) return;
+    if (pwd !== "0805") {
+      window.alert("Clave incorrecta.");
+      return;
+    }
+    const { error } = await supabase.from("agents").delete().eq("id", agent.id);
+    if (error) {
+      window.alert("No se pudo eliminar.");
+      return;
+    }
+    setAgents((prev) => prev.filter((a) => a.id !== agent.id));
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,7 +169,15 @@ export function AgentsSection() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {agents.map((agent, i) => (
               <FadeIn key={agent.id} delay={i * 0.05}>
-                <article className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-amber-400/40 hover:bg-white/[0.07]">
+                <article className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-amber-400/40 hover:bg-white/[0.07]">
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(agent)}
+                    aria-label={`Eliminar ${agent.name}`}
+                    className="absolute right-3 top-3 flex h-7 w-7 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-300 transition hover:border-red-400/60 hover:bg-red-500/20 hover:text-red-300"
+                  >
+                    <Check className="h-3.5 w-3.5" />
+                  </button>
                   <div className="flex items-center gap-4">
                     {agent.photo_url ? (
                       <img
