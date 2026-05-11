@@ -3,10 +3,11 @@ import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Waves, UtensilsCrossed, Sparkles, TrendingUp,
-  MapPin, Phone, MessageCircle, Calendar, ArrowDown, Play,
+  MapPin, Calendar, ArrowDown, Play,
 } from "lucide-react";
 import { Lightbox, type LightboxImage } from "@/components/Lightbox";
 import { FadeIn } from "@/components/FadeIn";
+import { AgentsSection } from "@/components/AgentsSection";
 
 import heroTerrace from "@/assets/hero-terrace.jpg";
 import living from "@/assets/living.jpg";
