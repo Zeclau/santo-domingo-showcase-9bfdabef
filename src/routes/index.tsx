@@ -333,44 +333,8 @@ function Landing() {
         </div>
       </section>
 
-      {/* AGENT / LEAD CAPTURE */}
-      <section className="relative overflow-hidden bg-slate-900 px-6 py-24 text-white md:py-32">
-        <div className="absolute inset-0 opacity-10" style={{
-          background: "radial-gradient(circle at 30% 20%, oklch(0.72 0.14 70) 0%, transparent 50%), radial-gradient(circle at 80% 80%, oklch(0.72 0.14 70) 0%, transparent 50%)"
-        }} />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <FadeIn delay={0.15}>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400">Tu Agente Exclusivo</span>
-            <h2 className="mt-3 font-serif text-3xl md:text-5xl">Ligia Donaire</h2>
-            <p className="mt-2 text-amber-200/80">Keller Williams Nicaragua</p>
-            <p className="mt-6 text-slate-300">
-              Conversemos sobre esta propiedad. Te acompaño en cada paso —
-              desde la visita privada hasta el cierre. Disponibilidad
-              inmediata para responder tus consultas.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href={TEL_URL}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-sm font-semibold text-slate-900 transition hover:bg-slate-100"
-              >
-                <Phone className="h-5 w-5 text-amber-600" />
-                Llamar a Ligia
-              </a>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-amber-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-amber-500"
-              >
-                <MessageCircle className="h-5 w-5" />
-                WhatsApp Directo
-              </a>
-            </div>
-            <p className="mt-5 text-sm text-slate-400">{PHONE_DISPLAY}</p>
-          </FadeIn>
-        </div>
-      </section>
+      {/* AGENTS LIST (Cloud-connected) */}
+      <AgentsSection />
 
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white px-6 py-10">
@@ -383,17 +347,6 @@ function Landing() {
           </p>
         </div>
       </footer>
-
-      {/* Floating WhatsApp */}
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="WhatsApp"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-amber-600 text-white shadow-2xl shadow-amber-900/40 transition hover:scale-110 hover:bg-amber-500"
-      >
-        <MessageCircle className="h-6 w-6" />
-      </a>
 
       <Lightbox
         images={galleryImages}
