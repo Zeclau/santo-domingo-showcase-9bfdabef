@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Phone, MessageCircle, Mail, UserPlus, Loader2, X } from "lucide-react";
+import { Phone, MessageCircle, Mail, UserPlus, Loader2, X, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { FadeIn } from "./FadeIn";
 import kwLogo from "@/assets/kw-logo.png";
