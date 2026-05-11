@@ -92,11 +92,6 @@ export function AgentsSection() {
     }
     setAgents((prev) => prev.filter((a) => a.id !== agent.id));
   };
-      .subscribe();
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
