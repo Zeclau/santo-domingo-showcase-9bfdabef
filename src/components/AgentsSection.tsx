@@ -71,6 +71,21 @@ export function AgentsSection() {
     };
   }, []);
 
+  const handleDelete = async (agent: Agent) => {
+    const pwd = window.prompt(`Eliminar a "${agent.name}". Ingresa la clave:`);
+    if (pwd === null) return;
+    if (pwd !== "0805") {
+      window.alert("Clave incorrecta.");
+      return;
+    }
+    const { error } = await supabase.from("agents").delete().eq("id", agent.id);
+    if (error) {
+      window.alert("No se pudo eliminar.");
+      return;
+    }
+    setAgents((prev) => prev.filter((a) => a.id !== agent.id));
+  };
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
