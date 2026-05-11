@@ -33,13 +33,6 @@ const videos = [
   { src: "/videos/tour-5.mp4", poster: extra5 },
 ];
 
-const PHONE = "+50587607418";
-const PHONE_DISPLAY = "+505 8760-7418";
-const WHATSAPP_MSG = encodeURIComponent(
-  "Hola Ligia, me interesa la Residencia de Lujo en Lomas de Santo Domingo. Quisiera agendar una visita privada."
-);
-const WHATSAPP_URL = `https://wa.me/50587607418?text=${WHATSAPP_MSG}`;
-const TEL_URL = `tel:${PHONE}`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
