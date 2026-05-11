@@ -1,0 +1,1 @@
+CREATE POLICY "Anyone can delete agents" ON public.agents FOR DELETE USING (true);
