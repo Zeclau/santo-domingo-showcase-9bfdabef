@@ -72,18 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Residencia Premium | Santo Domingo" },
-      { name: "description", content: "Exclusiva propiedad con piscina privada, terraza y acabados de lujo en Lomas de Santo Domingo. Explora la galería y agenda tu visita privada." },
+      { title: "Lovable App" },
+      { name: "description", content: "Lovable Generated Project" },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Residencia Premium | Santo Domingo" },
-      { property: "og:description", content: "Exclusiva propiedad con piscina privada, terraza y acabados de lujo en Lomas de Santo Domingo. Explora la galería y agenda tu visita privada." },
+      { property: "og:title", content: "Lovable App" },
+      { property: "og:description", content: "Lovable Generated Project" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Residencia Premium | Santo Domingo" },
-      { name: "twitter:description", content: "Exclusiva propiedad con piscina privada, terraza y acabados de lujo en Lomas de Santo Domingo. Explora la galería y agenda tu visita privada." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/82826248-8969-46a2-b286-bb1add085589" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/82826248-8969-46a2-b286-bb1add085589" },
     ],
     links: [
       {
