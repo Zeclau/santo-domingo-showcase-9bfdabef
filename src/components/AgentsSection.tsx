@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Phone, MessageCircle, Mail, UserPlus, Loader2, X, Trash2 } from "lucide-react";
+import { Phone, MessageCircle, Mail, UserPlus, Loader2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { FadeIn } from "./FadeIn";
 import kwLogo from "@/assets/kw-logo.png";
@@ -65,33 +65,11 @@ export function AgentsSection() {
           setAgents((prev) => [payload.new as Agent, ...prev]);
         },
       )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "agents" },
-        (payload) => {
-          setAgents((prev) => prev.filter((a) => a.id !== (payload.old as Agent).id));
-        },
-      )
       .subscribe();
     return () => {
       supabase.removeChannel(channel);
     };
   }, []);
-
-  const handleDelete = async (agent: Agent) => {
-    const code = window.prompt(`Para eliminar a "${agent.name}", ingresa la clave:`);
-    if (code === null) return;
-    if (code.trim() !== "0805") {
-      window.alert("Clave incorrecta.");
-      return;
-    }
-    const { error } = await supabase.from("agents").delete().eq("id", agent.id);
-    if (error) {
-      window.alert("No se pudo eliminar. Intenta de nuevo.");
-      return;
-    }
-    setAgents((prev) => prev.filter((a) => a.id !== agent.id));
-  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,16 +154,7 @@ export function AgentsSection() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {agents.map((agent, i) => (
               <FadeIn key={agent.id} delay={i * 0.05}>
-                <article className="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-amber-400/40 hover:bg-white/[0.07]">
-                  <button
-                    type="button"
-                    onClick={() => handleDelete(agent)}
-                    aria-label={`Eliminar ${agent.name}`}
-                    title="Eliminar (requiere clave)"
-                    className="absolute right-3 top-3 rounded-full bg-white/5 p-2 text-slate-400 transition hover:bg-red-500/20 hover:text-red-300"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
+                <article className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition hover:border-amber-400/40 hover:bg-white/[0.07]">
                   <div className="flex items-center gap-4">
                     {agent.photo_url ? (
                       <img
