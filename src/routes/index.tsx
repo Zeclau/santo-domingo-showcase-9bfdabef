@@ -176,9 +176,7 @@ function Landing() {
             className="mt-8 flex flex-wrap items-center gap-3"
           >
             <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#agentes"
               className="group inline-flex items-center gap-2 rounded-full bg-amber-600 px-7 py-4 text-sm font-semibold text-white shadow-lg shadow-amber-900/30 transition hover:bg-amber-500 hover:shadow-xl hover:shadow-amber-900/40 md:text-base"
             >
               <Calendar className="h-5 w-5" />
